@@ -154,6 +154,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
+                android:background="#FFA000"
+                android:backgroundTint="#FFA000"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toTopOf="@+id/song_text_tv"
                 app:layout_constraintEnd_toEndOf="parent"

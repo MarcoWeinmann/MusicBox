@@ -5,6 +5,7 @@ import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.example.musicbox.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,35 +16,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        binding = DataBindingUtil.setContentView(this,
+        R.layout.activity_main)
 
 
-    /*    // trage die ID des Buttons hier ein
-        var playButton = findViewById<ImageButton>(*//** <ButtonId> **//*)
+    var playButton = binding.playButton
+
         playButton.setOnClickListener {
-            createSongText()*/
-      //  }
+            createSongText()
+       }
     }
 
     /**
      * diese Funktion gibt den Wert des ausgewählten RadioButtons zurück
      **/
     fun getGenreFromRadios(): Int {
-        //TODO speichere die Id des ausgewählten Genres in einer Variable und gib diese im return
-        // Statement zurück
-        // nutze hierfür die .checkedRadioButtonId der RadioGroup
-
-        return 0
+    var genre = binding.musicTypeRadio.checkedRadioButtonId
+        return genre
     }
 
     /**
      * diese Funktion gibt den Wert des Sliders zurück
      **/
     fun getSongLength(): Float {
-        //TODO speichere die Value des Sliders in einer Variable und gib diese im return
-        // Statement zurück
-        // nutze hierfür die .value des Sliders
-
-        return 0f
+    var songLength = binding.songTextSlider.value
+        return songLength
     }
 
 
@@ -54,8 +51,8 @@ class MainActivity : AppCompatActivity() {
         // TODO speichere die Texteingabe des InputFelds in einer Variable
         //  und gib diese im return Statement zurück
         //  nutze hierfür die .text des Inputfelds (vergiss nicht .toString())
-
-        return ""
+        var str = findViewById<EditText>(tvId).text.toString()
+        return str
     }
 
     /**
@@ -69,7 +66,8 @@ class MainActivity : AppCompatActivity() {
         //  im return Statement zurück
         //  der String setzt sich wie folgt zusammen (verse + chorus.repeat(3)).repeat(length)
         //  mittels .repeat(Int) lässt sich ein String wiederholen
-        return ""
+
+        return ((genreVerse) + genreChorus.repeat(3)).repeat(songLength)
     }
 
 
@@ -78,6 +76,38 @@ class MainActivity : AppCompatActivity() {
      * Außerdem wird der erstellte songString in der entsprechenden View dargestellt
      **/
     fun createSongText() {
+        var t1 = getStringFromInput(R.id.firstText)
+        var t2 = getStringFromInput(R.id.secondText)
+        var t3 = getStringFromInput(R.id.thirdText)
+        var genre = getGenreFromRadios()
+        var songLength = getSongLength()
+        var songString: String = ""
+        var sV = findViewById<TextView>(R.id.song_text_tv)
+        sV.SetmovementMethod(ScrollingMovementMethod))
+        var songVerse: String = ""
+        var songChorus: String = ""
+
+        when (genre){
+            R.id.radio_rap-> {
+            songVerse = getString(R.string.rap_verse, t1, t2, t3)
+                    songChorus = getString(R.string.rap_chorus)
+        }
+        R.id.radio_pop -> {
+            songVerse = getString(R.string.pop_verse, t1, t2, t3)
+            songChorus = getString(R.string.pop_chorus)
+        }
+        R.id.radio_volk -> {
+            songVerse = getString(R.string.volk_verse, t1, t2)
+            songChorus = getString(R.string.volk_chorus, t3)
+        }
+        else -> {
+            songVerse = getString(R.string.genre_error)
+        }
+    }
+    songString = createSongString(songVerse, songChorus, songLength.toInt())
+    sV.text = songString
+}
+        }
 
         // TODO Lese die Textfelder aus und speichere die Strings in  Variablen
 
