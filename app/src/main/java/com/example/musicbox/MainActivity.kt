@@ -5,17 +5,23 @@ import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.musicbox.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // trage die ID des Buttons hier ein
-        var playButton = findViewById<ImageButton>(/** <ButtonId> **/)
+
+
+    /*    // trage die ID des Buttons hier ein
+        var playButton = findViewById<ImageButton>(*//** <ButtonId> **//*)
         playButton.setOnClickListener {
-            createSongText()
-        }
+            createSongText()*/
+      //  }
     }
 
     /**
