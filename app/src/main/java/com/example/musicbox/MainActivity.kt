@@ -1,5 +1,6 @@
 package com.example.musicbox
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.View
@@ -16,22 +17,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        binding = DataBindingUtil.setContentView(this,
-        R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(
+            this,
+            R.layout.activity_main
+        )
 
 
-    var playButton = binding.playButton
+        var playButton = binding.playButton
 
         playButton.setOnClickListener {
             createSongText()
-       }
+        }
     }
 
     /**
      * diese Funktion gibt den Wert des ausgewählten RadioButtons zurück
      **/
     fun getGenreFromRadios(): Int {
-    var genre = binding.musicTypeRadio.checkedRadioButtonId
+        var genre = binding.musicTypeRadio.checkedRadioButtonId
         return genre
     }
 
@@ -39,7 +42,7 @@ class MainActivity : AppCompatActivity() {
      * diese Funktion gibt den Wert des Sliders zurück
      **/
     fun getSongLength(): Float {
-    var songLength = binding.songTextSlider.value
+        var songLength = binding.songTextSlider.value
         return songLength
     }
 
@@ -51,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         // TODO speichere die Texteingabe des InputFelds in einer Variable
         //  und gib diese im return Statement zurück
         //  nutze hierfür die .text des Inputfelds (vergiss nicht .toString())
-        var str = findViewById<EditText>(tvId).text.toString()
+        var str = findViewById<EditText>(editViewId).text.toString()
         return str
     }
 
@@ -82,58 +85,55 @@ class MainActivity : AppCompatActivity() {
         var genre = getGenreFromRadios()
         var songLength = getSongLength()
         var songString: String = ""
-        var sV = findViewById<TextView>(R.id.song_text_tv)
-        sV.SetmovementMethod(ScrollingMovementMethod))
+        var sV = binding.songTextTv
+        sV.movementMethod = ScrollingMovementMethod()
         var songVerse: String = ""
         var songChorus: String = ""
 
-        when (genre){
-            R.id.radio_rap-> {
-            songVerse = getString(R.string.rap_verse, t1, t2, t3)
-                    songChorus = getString(R.string.rap_chorus)
+        when (genre) {
+            R.id.radio_rap -> {
+                songVerse = getString(R.string.rap_verse, t1, t2, t3)
+                songChorus = getString(R.string.rap_chorus)
+            }
+            R.id.radio_pop -> {
+                songVerse = getString(R.string.pop_verse, t1, t2, t3)
+                songChorus = getString(R.string.pop_chorus)
+            }
+            R.id.radio_volk -> {
+                songVerse = getString(R.string.folk_verse, t1, t2)
+                songChorus = getString(R.string.folk_chorus, t3)
+            }
+            else -> {
+                songVerse = getString(R.string.genre_error)
+            }
         }
-        R.id.radio_pop -> {
-            songVerse = getString(R.string.pop_verse, t1, t2, t3)
-            songChorus = getString(R.string.pop_chorus)
-        }
-        R.id.radio_volk -> {
-            songVerse = getString(R.string.volk_verse, t1, t2)
-            songChorus = getString(R.string.volk_chorus, t3)
-        }
-        else -> {
-            songVerse = getString(R.string.genre_error)
-        }
-    }
-    songString = createSongString(songVerse, songChorus, songLength.toInt())
-    sV.text = songString
-}
-        }
-
-        // TODO Lese die Textfelder aus und speichere die Strings in  Variablen
-
-        // TODO Lese das Genre aus speichere den String in einer Variable
-        //  (getGenreFromRadios())
-
-        // TODO Lese die Songlänge aus speichere den Integer in einer Variable
-        //  (getSongLength())
-
-        // TODO speichere je nach Genre die richtigen Strings in Variablen für verse und chorus
-        //  erstelle hierfür eine when Bedingung und lade je nach RadioButtonId die richtigen Strings mittels getString(STRINGID)
-
-
-
-        //TODO nun kannst du createSongString mit verse, chorus und length füttern und das
-        // Ergebniss in einer Variable speichern
-        // createSongString()
-
-
-        // TODO zu guter letzt setze die .text deiner Ausgabe TextView auf den den SongString
-
-
-        // nutzte <TextView>.setMovementMethod(ScrollingMovementMethod()), um TextView scrollable zu machen
-        // Achtung: im Layout  muss folgendes in der Textview enthalten sein
-        //        android:scaleType="fitXY"
-        //        android:scrollbars="vertical"
-
+        songString = createSongString(songVerse, songChorus, songLength.toInt())
+        sV.text = songString
     }
 }
+
+// TODO Lese die Textfelder aus und speichere die Strings in  Variablen
+
+// TODO Lese das Genre aus speichere den String in einer Variable
+//  (getGenreFromRadios())
+
+// TODO Lese die Songlänge aus speichere den Integer in einer Variable
+//  (getSongLength())
+
+// TODO speichere je nach Genre die richtigen Strings in Variablen für verse und chorus
+//  erstelle hierfür eine when Bedingung und lade je nach RadioButtonId die richtigen Strings mittels getString(STRINGID)
+
+
+//TODO nun kannst du createSongString mit verse, chorus und length füttern und das
+// Ergebniss in einer Variable speichern
+// createSongString()
+
+
+// TODO zu guter letzt setze die .text deiner Ausgabe TextView auf den den SongString
+
+
+// nutzte <TextView>.setMovementMethod(ScrollingMovementMethod()), um TextView scrollable zu machen
+// Achtung: im Layout  muss folgendes in der Textview enthalten sein
+//        android:scaleType="fitXY"
+//        android:scrollbars="vertical"
+

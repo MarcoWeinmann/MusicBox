@@ -33,7 +33,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
-            android:layout_marginBottom="10dp"
             android:layout_marginTop="50dp"
             android:ems="10"
             android:gravity="start|top"
@@ -41,14 +40,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/secondTextLayout"
             app:layout_constraintVertical_weight="1">
 
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/firstText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#EC3F3F"
+                android:backgroundTint="#AE1F1F" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,20 +73,18 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
             android:layout_marginVertical="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="9dp"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
-            app:layout_constraintBottom_toTopOf="@id/thirdTextLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/firstTextLayout"
-            app:layout_constraintVertical_weight="1">
+            app:layout_constraintTop_toBottomOf="@+id/firstTextLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/secondText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,8 +121,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/thirdText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -132,23 +130,25 @@
         <TextView
             android:id="@+id/song_text_tv"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="200dp"
             android:layout_marginHorizontal="50dp"
             android:layout_marginVertical="10dp"
             android:scaleType="fitXY"
             android:scrollbars="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView"
             app:layout_constraintVertical_weight="2" />
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
             android:layout_width="wrap_content"
             android:layout_height="210dp"
-            android:layout_marginBottom="220dp"
-            app:layout_constraintBottom_toBottomOf="@+id/song_text_tv"
+            android:layout_marginTop="48dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/thirdTextLayout">
 
             <LinearLayout
                 android:layout_width="match_parent"
